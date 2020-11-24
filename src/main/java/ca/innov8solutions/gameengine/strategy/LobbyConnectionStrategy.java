@@ -10,11 +10,11 @@ import java.util.UUID;
 
 public class LobbyConnectionStrategy<E extends EnginePlayer> implements ConnectionStrategy {
 
-    private List<EnginePlayer> players = new ArrayList<>();
+    private List<E> players = new ArrayList<>();
     private Location lobbyLocation;
 
     @Override
-    public List getConnections() {
+    public List<E> getConnections() {
         return players;
     }
 
@@ -42,5 +42,9 @@ public class LobbyConnectionStrategy<E extends EnginePlayer> implements Connecti
     @Override
     public EnginePlayer getConnectedPlayer(UUID uuid) {
         return null;
+    }
+
+    public Location getLobbyLocation() {
+        return lobbyLocation;
     }
 }

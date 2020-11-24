@@ -1,5 +1,7 @@
 package ca.innov8solutions.gameengine.game;
 
+import java.util.List;
+
 public abstract class Game {
 
     /**
@@ -7,6 +9,7 @@ public abstract class Game {
      */
 
     private String name;
+    private List<GameState> possibleStates;
     private GameState currentState;
     private int time;
 
@@ -26,6 +29,7 @@ public abstract class Game {
         if (time % 20 == 0) {
             second();
         }
+        currentState.tick(time);
     }
     public void minute() {
 
@@ -34,6 +38,18 @@ public abstract class Game {
 
     }
 
+    public void setCurrentState(GameState currentState) {
+        this.currentState = currentState;
+    }
+
+    void addGameState(GameState state) {
+        this.getPossibleStates().add(state);
+    }
+
     public abstract void stop();
     public abstract void start();
+
+    public List<GameState> getPossibleStates() {
+        return possibleStates;
+    }
 }

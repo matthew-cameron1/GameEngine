@@ -2,6 +2,7 @@ package ca.innov8solutions.gameengine.strategy;
 
 import ca.innov8solutions.gameengine.player.EnginePlayer;
 import ca.innov8solutions.gameengine.team.Team;
+import org.bukkit.Location;
 
 import java.util.List;
 
@@ -38,5 +39,14 @@ public class TeamStrategy<E extends EnginePlayer> implements GameStrategy {
             return damaged.isFriendlyFire();
         }
         return true;
+    }
+
+    public void spawnTeam(Team<E> t, Location spawn) {
+        t.getTeamMembers().forEach(mem -> {
+            mem.teleport(spawn);
+        });
+    }
+    public void addTeam(Team<E> team) {
+        this.teams.add(team);
     }
 }
